@@ -1,0 +1,60 @@
+<style>
+  .heading {
+    color: #c084fc;
+  }
+  .card-body {
+    background-color: #1e293b;
+    width: auto;
+    height: auto;
+  }
+  .card {
+    border: none !important;
+    border-radius: 1.5em !important;
+  }
+  .card .card-title {
+    color: #fff;
+    font-size: 150%;
+  }
+  .card-text {
+    color: #9ca3af;
+  }
+</style>
+{% extends 'base.html' %} {% block pages %}
+<div class="container mt-3">
+  <h1 class="heading d-flex justify-content-center">Projects</h1>
+
+  <div class="row mt-3">
+    {% for project in projects %}
+    <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-3">
+      <div class="card">
+        <img
+          src="{{ project.image.url }}"
+          class="card-img-top"
+          alt="{{ project.title }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ project.title }}</h5>
+          <p class="card-text">{{ project.description }}</p>
+          {% if project.githubLink != null%}
+          <a
+            href="{{ project.githubLink }}"
+            class="btn btn-primary"
+            target="_blank"
+            >GitHub</a
+          >
+          {% endif %} {% if project.demoLink != null%}
+          <a
+            href="{{ project.demoLink }}"
+            class="btn btn-primary"
+            target="_blank"
+            >Demo</a
+          >
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% endblock pages %}
+</div>
